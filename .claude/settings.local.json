@@ -8,7 +8,13 @@
       "Bash(./gradlew compileJava:*)",
       "Bash(echo $JAVA_HOME)",
       "Read(//c/Program Files/Java//**)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(./gradlew:*)",
+      "Bash(where java)",
+      "Bash(dir:*)",
+      "Bash(set JAVA_HOME=C:Program FilesJavaopenjdk-21.0.1)",
+      "Bash(export:*)",
+      "Bash(java:*)"
     ],
     "deny": [],
     "ask": []

@@ -4,11 +4,13 @@ import com.basic.template.backend_template.domain.inventory.entity.ItemCategory;
 import com.basic.template.backend_template.domain.inventory.entity.ItemStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class InventoryItemReqDto {
 

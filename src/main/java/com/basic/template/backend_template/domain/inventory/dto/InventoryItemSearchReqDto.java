@@ -4,8 +4,10 @@ import com.basic.template.backend_template.domain.inventory.entity.ItemCategory;
 import com.basic.template.backend_template.domain.inventory.entity.ItemStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class InventoryItemSearchReqDto {
 

@@ -8,6 +8,20 @@ spring:
 server:
   port: ${SERVER_PORT:8080}
 
+logging:
+  level:
+    com.basic.template.backend_template: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/backend-template.log
+    max-size: 10MB
+    max-history: 30
+
 management:
   endpoints:
     web:

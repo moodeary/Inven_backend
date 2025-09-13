@@ -6,7 +6,6 @@ import com.basic.template.backend_template.domain.inventory.dto.InventoryItemSea
 import com.basic.template.backend_template.domain.inventory.entity.InventoryItem;
 import com.basic.template.backend_template.domain.inventory.entity.ItemCategory;
 import com.basic.template.backend_template.domain.inventory.repository.InventoryItemRepository;
-import com.basic.template.backend_template.domain.user.entity.User;
 import com.basic.template.backend_template.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -96,8 +95,8 @@ public class InventoryItemServiceImpl implements InventoryItemService {
     public Page<InventoryItemResDto> getMyItems(Long userId, InventoryItemSearchReqDto searchRequest) {
         Sort sort = Sort.by(
                 "desc".equalsIgnoreCase(searchRequest.getSortDirection())
-                    ? Sort.Direction.DESC
-                    : Sort.Direction.ASC,
+                        ? Sort.Direction.DESC
+                        : Sort.Direction.ASC,
                 searchRequest.getSortBy()
         );
 
