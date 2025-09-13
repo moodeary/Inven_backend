@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(move LoginRequest.java LoginReqDto.java)",
+      "Bash(move UserResponse.java UserResDto.java)",
+      "Bash(move JwtResponse.java JwtResDto.java)",
+      "Bash(mv:*)",
+      "Bash(./gradlew compileJava:*)",
+      "Bash(echo $JAVA_HOME)",
+      "Read(//c/Program Files/Java//**)",
+      "Bash(find:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

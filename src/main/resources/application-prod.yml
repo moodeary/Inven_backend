@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mariadb://localhost:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul}
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY:mySecretKey123456789012345678901234567890}
+  access-token-expiration: ${JWT_EXPIRATION:3600000} # 1시간 (환경변수로 설정 가능)
+
+logging:
+  level:
+    com.basic.template.backend_template: INFO
+    org.springframework.security: WARN
+    root: WARN
