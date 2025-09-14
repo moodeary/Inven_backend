@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: ${DB_URL:jdbc:mariadb://localhost:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul}
+    url: ${DB_URL:jdbc:mariadb://mariadb:3306/inventory?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul}
     driver-class-name: org.mariadb.jdbc.Driver
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    password: ${DB_PASSWORD:!jelly0403}
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:

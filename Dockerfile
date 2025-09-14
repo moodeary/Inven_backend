@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy gradle files
 COPY gradle gradle
 COPY gradlew .
-COPY gradle.properties .
+#COPY gradle.properties .
 COPY build.gradle .
 COPY settings.gradle .
 
@@ -18,7 +18,7 @@ RUN chmod +x ./gradlew
 RUN ./gradlew build -x test
 
 # Runtime stage
-FROM openjdk:21-jre-slim
+FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
