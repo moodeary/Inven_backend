@@ -14,7 +14,9 @@
       "Bash(dir:*)",
       "Bash(set JAVA_HOME=C:Program FilesJavaopenjdk-21.0.1)",
       "Bash(export:*)",
-      "Bash(java:*)"
+      "Bash(java:*)",
+      "Read(//d/source/**)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
