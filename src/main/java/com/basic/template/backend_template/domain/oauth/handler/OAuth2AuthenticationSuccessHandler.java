@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     private final JwtUtil jwtUtil;
 
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
@@ -29,8 +33,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         if (authentication.getPrincipal() instanceof CustomOAuth2User customUser) {
             String token = jwtUtil.generateAccessToken(customUser.getUser().getEmail(), customUser.getUser().getId());
 
-            String redirectUrl = String.format("http://localhost:5173/auth/callback?token=%s",
-                    URLEncoder.encode(token, StandardCharsets.UTF_8));
+            String redirectUrl = String.format("%s/auth/callback?token=%s",
+                    frontendUrl, URLEncoder.encode(token, StandardCharsets.UTF_8));
 
             log.info("OAuth2 로그인 성공: 사용자 ID = {}, 리디렉션 URL = {}",
                     customUser.getUser().getId(), redirectUrl);
@@ -38,7 +42,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             getRedirectStrategy().sendRedirect(request, response, redirectUrl);
         } else {
             log.error("OAuth2 로그인 실패: CustomOAuth2User가 아닙니다.");
-            getRedirectStrategy().sendRedirect(request, response, "http://localhost:5173/login?error=oauth_failed");
+            getRedirectStrategy().sendRedirect(request, response, frontendUrl + "/login?error=oauth_failed");
         }
     }
 }

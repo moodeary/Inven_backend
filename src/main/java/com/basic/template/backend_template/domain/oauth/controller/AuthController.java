@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
@@ -23,15 +24,18 @@ public class AuthController {
 
     private final JwtUtil jwtUtil;
 
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
+
     @GetMapping("/kakao/callback")
     public void kakaoCallback(@AuthenticationPrincipal OAuth2User oauth2User, HttpServletResponse response) throws IOException {
         if (oauth2User instanceof CustomOAuth2User customUser) {
             String token = jwtUtil.generateAccessToken(customUser.getUser().getEmail(), customUser.getUser().getId());
 
-            String redirectUrl = String.format("http://localhost:5173/auth/callback?token=%s", token);
+            String redirectUrl = String.format("%s/auth/callback?token=%s", frontendUrl, token);
             response.sendRedirect(redirectUrl);
         } else {
-            response.sendRedirect("http://localhost:5173/login?error=oauth_failed");
+            response.sendRedirect(frontendUrl + "/login?error=oauth_failed");
         }
     }
 
