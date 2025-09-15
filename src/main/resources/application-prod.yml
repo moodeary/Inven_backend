@@ -14,6 +14,26 @@ spring:
         format_sql: false
         dialect: org.hibernate.dialect.MariaDBDialect
 
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            redirect-uri: ${KAKAO_REDIRECT_URI}
+            authorization-grant-type: authorization_code
+            client-name: Kakao
+            scope:
+              - profile_nickname
+              - account_email
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
 jwt:
   secret-key: ${JWT_SECRET_KEY:mySecretKey123456789012345678901234567890}
   access-token-expiration: ${JWT_EXPIRATION:3600000} # 1시간 (환경변수로 설정 가능)

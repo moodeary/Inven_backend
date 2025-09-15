@@ -21,7 +21,7 @@ public class User extends BaseEntity {
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password", nullable = true, length = 255)
     private String password;
 
     @Column(name = "nickname", nullable = false, length = 50)
@@ -31,10 +31,24 @@ public class User extends BaseEntity {
     @Column(name = "role", nullable = false)
     private UserRole role;
 
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "provider_id")
+    private String providerId;
+
     public User(String email, String password, String nickname, UserRole role) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.role = role;
+    }
+
+    public User(String email, String nickname, UserRole role, String provider, String providerId) {
+        this.email = email;
+        this.nickname = nickname;
+        this.role = role;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 }

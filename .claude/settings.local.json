@@ -16,7 +16,11 @@
       "Bash(export:*)",
       "Bash(java:*)",
       "Read(//d/source/**)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(set JAVA_HOME=\"C:\\Program Files\\Java\\openjdk-21.0.1\")",
+      "Bash(set \"JAVA_HOME=C:\\Program Files\\Java\\openjdk-21.0.1\")",
+      "Bash(mysql:*)",
+      "Bash(move:*)"
     ],
     "deny": [],
     "ask": []

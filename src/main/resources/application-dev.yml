@@ -8,11 +8,29 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         dialect: org.hibernate.dialect.MariaDBDialect
+
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: a43357e49791226f1197dc3c3c35ad56
+            client-secret: TnGINkfRO19CGIoRebYsSsRFAyk9yyHV
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-name: Kakao
+            client-authentication-method: client_secret_post
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
 
 jwt:
   secret-key: mySecretKey123456789012345678901234567890
@@ -20,6 +38,5 @@ jwt:
 
 logging:
   level:
-    com.basic.template.backend_template: DEBUG
-    org.springframework.security: DEBUG
+    com.basic.template.backend_template: INFO
     root: INFO
