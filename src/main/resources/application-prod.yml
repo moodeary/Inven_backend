@@ -21,12 +21,10 @@ spring:
           kakao:
             client-id: ${KAKAO_CLIENT_ID}
             client-secret: ${KAKAO_CLIENT_SECRET}
-            redirect-uri: ${KAKAO_REDIRECT_URI}
+            redirect-uri: ${BACKEND_URL:http://backend:8080}/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-name: Kakao
-            scope:
-              - profile_nickname
-              - account_email
+            client-authentication-method: client_secret_post
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
@@ -35,8 +33,12 @@ spring:
             user-name-attribute: id
 
 jwt:
-  secret-key: ${JWT_SECRET_KEY:mySecretKey123456789012345678901234567890}
-  access-token-expiration: ${JWT_EXPIRATION:3600000} # 1시간 (환경변수로 설정 가능)
+  secret-key: ${JWT_SECRET_KEY}
+  access-token-expiration: ${JWT_EXPIRATION:86400000}
+
+app:
+  frontend:
+    url: ${FRONTEND_URL:http://frontend:3000}
 
 logging:
   level:
